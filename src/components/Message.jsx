@@ -1,10 +1,12 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {useSelector} from "react-redux";
+import store from '../redux/store';
 
 const Message = ({message}) => {
     const scroll = useRef();
     const {authUser,selectedUser} = useSelector(store=>store.user);
-
+    const {toggle, setToggle} = useState(false)
+  
     useEffect(()=>{
         scroll.current?.scrollIntoView({behavior:"smooth"});
     },[message]);
@@ -19,7 +21,10 @@ const Message = ({message}) => {
             <div className="chat-header">
                 <time className="text-xs opacity-50 text-white">12:45</time>
             </div>
-            <div className={`chat-bubble ${message?.senderId !== authUser?._id ? 'bg-gray-200 text-black' : ''} `}>{message?.message}</div>
+            {/* Add Delete and Update message id bellow line */}
+            <div className={`chat-bubble ${message?.senderId !== authUser?._id ? 'bg-gray-200 text-black' : ''}  flex`}>
+                {message?.message}
+            </div>
         </div>
     )
 }

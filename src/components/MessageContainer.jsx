@@ -2,6 +2,7 @@ import React from 'react'
 import SendInput from './SendInput'
 import Messages from './Messages';
 import { useSelector,useDispatch } from "react-redux";
+import { FaEllipsisVertical } from "react-icons/fa6";
 // import { setSelectedUser } from '../redux/userSlice';
 
 const MessageContainer = () => {
@@ -9,7 +10,9 @@ const MessageContainer = () => {
     // const dispatch = useDispatch();
 
     const isOnline = onlineUsers?.includes(selectedUser?._id);
-   
+    function buttonToggle(){
+        console.log("Button Clicked________________________");
+    }
     return (
         <>
             {
@@ -24,7 +27,12 @@ const MessageContainer = () => {
                             <div className='flex flex-col flex-1'>
                                 <div className='flex justify-between gap-2'>
                                     <p>{selectedUser?.fullName}</p>
+                                    <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" className=''><FaEllipsisVertical onClick={buttonToggle}/></button>
+                                    
                                 </div>
+                                {/* <div className='flex justify-end'>
+                                <button className=''><FaEllipsisVertical onClick={buttonToggle}/></button>
+                                </div> */}
                             </div>
                         </div>
                         <Messages />
